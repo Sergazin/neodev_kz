@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en" class="h-full w-full">
   <head>
     <meta charset="UTF-8" />
@@ -21,145 +22,27 @@
         font-style: normal;
       }
     </style>
+    <!-- https://nextly.web3templates.com -->
   </head>
   <body class="h-full w-full">
-    <div class="w-full">
-      <nav
-        class="container relative flex flex-wrap items-center justify-between p-8 mx-auto lg:justify-between xl:px-0"
-      >
-        <div class="flex flex-wrap items-center justify-between w-full lg:w-auto">
-          <a href="/"
-            ><span class="flex items-center space-x-2 text-2xl font-medium text-indigo-500 darkx:text-gray-100"
-              ><span
-                ><img
-                  alt="N"
-                  loading="lazy"
-                  width="32"
-                  height="32"
-                  decoding="async"
-                  data-nimg="1"
-                  class="w-8"
-                  style="color: transparent"
-                  src="/img/logo.svg" /></span
-              ><span>NeoDev</span></span
-            ></a
-          ><button
-            aria-label="Toggle Menu"
-            class="px-2 py-1 ml-auto text-gray-500 rounded-md lg:hidden hover:text-indigo-500 focus:text-indigo-500 focus:bg-indigo-100 focus:outline-none darkx:text-gray-300 darkx:focus:bg-trueGray-700"
-            id="headlessui-disclosure-button-:R956:"
-            type="button"
-            aria-expanded="false"
-            data-headlessui-state=""
-          >
-            <svg class="w-6 h-6 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-              <path
-                fill-rule="evenodd"
-                d="M4 5h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2z"
-              ></path>
-            </svg>
-          </button>
-        </div>
-        <div class="hidden text-center lg:flex lg:items-center">
-          <ul class="items-center justify-end flex-1 pt-6 list-none lg:pt-0 lg:flex">
-            <li class="mr-3 nav__item">
-              <a
-                class="inline-block px-4 py-2 text-lg font-normal text-gray-800 no-underline rounded-md darkx:text-gray-200 hover:text-indigo-500 focus:text-indigo-500 focus:bg-indigo-100 focus:outline-none darkx:focus:bg-gray-800"
-                href="/"
-                >О нас</a
-              >
-            </li>
-            <li class="mr-3 nav__item">
-              <a
-                class="inline-block px-4 py-2 text-lg font-normal text-gray-800 no-underline rounded-md darkx:text-gray-200 hover:text-indigo-500 focus:text-indigo-500 focus:bg-indigo-100 focus:outline-none darkx:focus:bg-gray-800"
-                href="/"
-                >Почему мы</a
-              >
-            </li>
-            <li class="mr-3 nav__item">
-              <a
-                class="inline-block px-4 py-2 text-lg font-normal text-gray-800 no-underline rounded-md darkx:text-gray-200 hover:text-indigo-500 focus:text-indigo-500 focus:bg-indigo-100 focus:outline-none darkx:focus:bg-gray-800"
-                href="/"
-                >Цены</a
-              >
-            </li>
-            <li class="mr-3 nav__item">
-              <a
-                class="inline-block px-4 py-2 text-lg font-normal text-gray-800 no-underline rounded-md darkx:text-gray-200 hover:text-indigo-500 focus:text-indigo-500 focus:bg-indigo-100 focus:outline-none darkx:focus:bg-gray-800"
-                href="/"
-                >Контакты</a
-              >
-            </li>
-          </ul>
-        </div>
-        <div class="hidden mr-3 space-x-4 lg:flex nav__item">
-          <a class="px-6 py-2 text-white bg-indigo-600 rounded-md md:ml-5" href="/">Оставить заявку</a>
-        </div>
-      </nav>
+    <div id="app">
+      <div html-load="./sections/header.html"></div>
+      <div html-load="./sections/hero.html"></div>
     </div>
-    <div class="container p-8 mx-auto xl:px-0 flex flex-wrap">
-      <div class="flex items-center w-full lg:w-1/2">
-        <div class="max-w-2xl mb-8">
-          <h1
-            class="text-4xl font-bold leading-snug tracking-tight text-gray-800 lg:text-4xl lg:leading-tight xl:text-6xl xl:leading-tight darkz:text-white"
-          >
-            Новый подход к разработке
-          </h1>
-          <p class="py-5 text-xl leading-normal text-gray-500 lg:text-xl xl:text-2xl darkz:text-gray-300">
-            Мы можем создать для вас сайт любой сложности, от лендинга до интернет-магазина. Все что вам нужно - это
-            связаться с нами.
-          </p>
-          <div class="flex flex-col items-start space-y-3 sm:space-x-4 sm:space-y-0 sm:items-center sm:flex-row">
-            <a
-              href="https://web3templates.com/templates/nextly-landing-page-template-for-startups"
-              target="_blank"
-              rel="noopener"
-              class="px-8 py-4 text-lg font-medium text-center text-white bg-indigo-600 rounded-md"
-              >Оставить заявку </a
-            ><a
-              href="https://github.com/web3templates/nextly-template/"
-              target="_blank"
-              rel="noopener"
-              class="flex items-center space-x-2 text-gray-500 darkz:text-gray-400"
-              ><svg
-                role="img"
-                width="24"
-                height="24"
-                class="w-5 h-5"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <title>GitHub</title>
-                <path
-                  d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"
-                ></path></svg
-              ><span> View on Github</span></a
-            >
-          </div>
-        </div>
-      </div>
-      <div class="flex items-center justify-center w-full lg:w-1/2">
-        <div class="">
-          <img
-            alt="Hero Illustration"
-            loading="eager"
-            width="616"
-            height="617"
-            decoding="async"
-            data-nimg="1"
-            class="object-cover"
-            style="color: transparent"
-            srcset="
-              /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fhero.4e76c802.png&amp;w=640&amp;q=75  1x,
-              /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fhero.4e76c802.png&amp;w=1920&amp;q=75 2x
-            "
-            src="/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fhero.4e76c802.png&amp;w=1920&amp;q=75"
-          />
-        </div>
-      </div>
-    </div>
-    <div id="app" class="h-full w-full flex items-center justify-center bg-gray-100">
-      <div class="text-6xl">Hello NeoDev</div>
-    </div>
+    <script>
+      const htmlLoad = async (selector) => {
+        const elements = document.querySelectorAll("[html-load]");
+        elements.forEach((element) => {
+          const url = element.getAttribute("html-load");
+          fetch(url)
+            .then((response) => response.text())
+            .then((html) => {
+              element.outerHTML = html;
+            });
+        });
+      };
+
+      htmlLoad("[html-load]");
+    </script>
   </body>
 </html>
