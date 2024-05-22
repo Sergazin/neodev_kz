@@ -29,6 +29,7 @@
     <div html-load="./sections/hero.html"></div>
     <div html-load="./sections/projects.html"></div>
     <div html-load="./sections/faq.html"></div>
+    
   </div>
   
   <script>
@@ -88,5 +89,84 @@
       htmlLoad("[html-load]");
     });
   </script>
+
+  <!-- Modal for Contact Form -->
+<!-- Contact Form Modal -->
+<div id="contactModal" class="fixed inset-0 flex items-center justify-center hidden">
+  <div class="bg-white rounded-lg shadow-lg p-6">
+    <h2 class="text-xl font-bold mb-4">Оставить заявку</h2>
+    <form id="contactForm">
+      <div class="mb-4">
+        <label for="name" class="block text-sm font-medium text-gray-700">Имя:</label>
+        <input type="text" id="name" name="name" class="mt-1 p-2 block w-full border border-gray-300 rounded-md" required>
+      </div>
+      <div class="mb-4">
+        <label for="phone" class="block text-sm font-medium text-gray-700">Номер телефона:</label>
+        <input type="text" id="phone" name="phone" class="mt-1 p-2 block w-full border border-gray-300 rounded-md" pattern="^\+7[0-9]{10}$" required>
+      </div>
+      <div class="flex justify-end">
+        <button type="button" class="bg-gray-500 text-white px-4 py-2 rounded mr-2" onclick="closeModal()">Отмена</button>
+        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Отправить</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+<script>
+  document.getElementById('contactForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    const name = document.getElementById('name').value;
+    const phone = document.getElementById('phone').value;
+
+    const message = `Имя: ${name}\nТелефон: ${phone}`;
+    const token = '7049544602:AAFFkIdvtly58ShkY6b1RYxMH8-xnJkhDAU';  // Replace with your bot token
+    const chat_id = '506457348';  // Replace with your chat ID
+
+    const url = `https://api.telegram.org/bot${token}/sendMessage`;
+
+    const data = {
+      chat_id: chat_id,
+      text: message
+    };
+
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data.ok) {
+        alert('Ваше сообщение было отправлено!');
+      } else {
+        alert('Произошла ошибка при отправке сообщения.');
+      }
+      document.getElementById('contactForm').reset();
+      closeModal();
+    })
+    .catch(error => {
+      console.error('Ошибка:', error);
+      alert('Произошла ошибка при отправке сообщения.');
+    });
+  });
+
+  function closeModal() {
+    document.getElementById('contactModal').classList.add('hidden');
+  }
+
+  // Function to open the modal
+  function openModal() {
+    document.getElementById('contactModal').classList.remove('hidden');
+  }
+
+  // Add event listener to the "Оставить заявку" button
+  document.querySelector('.open-contact-modal').addEventListener('click', openModal);
+</script>
+
+
 </body>
 </html>
