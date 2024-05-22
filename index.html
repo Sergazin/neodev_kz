@@ -1,48 +1,74 @@
 <!DOCTYPE html>
-
 <html lang="en" class="h-full w-full">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>NeoDev | Разработка под ключ</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
-      rel="stylesheet"
-    />
-    <style>
-      * {
-        font-family: "Montserrat", sans-serif;
-        font-optical-sizing: auto;
-        font-weight: <weight>;
-        font-style: normal;
-      }
-    </style>
-    <!-- https://nextly.web3templates.com -->
-  </head>
-  <body class="h-full w-full">
-    <div id="app">
-      <div html-load="./sections/header.html"></div>
-      <div html-load="./sections/hero.html"></div>
-    </div>
-    <script>
-      const htmlLoad = async (selector) => {
-        const elements = document.querySelectorAll("[html-load]");
-        elements.forEach((element) => {
-          const url = element.getAttribute("html-load");
-          fetch(url)
-            .then((response) => response.text())
-            .then((html) => {
-              element.outerHTML = html;
-            });
-        });
-      };
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NeoDev | Разработка под ключ</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      font-family: "Montserrat", sans-serif;
+      font-optical-sizing: auto;
+      font-weight: <weight>;
+      font-style: normal;
+    }
+    .rotate-180 {
+      transform: rotate(180deg);
+    }
+  </style>
+</head>
+<body class="h-full w-full">
+  <div id="app">
+    <div html-load="./sections/header.html"></div>
+    <div html-load="./sections/hero.html"></div>
+    <div html-load="./sections/projects.html"></div>
+    <div html-load="./sections/faq.html"></div>
+  </div>
+  
+  <script>
+    const htmlLoad = async (selector) => {
+      const elements = document.querySelectorAll("[html-load]");
+      for (const element of elements) {
+        const url = element.getAttribute("html-load");
+        const response = await fetch(url);
+        const html = await response.text();
+        element.outerHTML = html;
+      }
+      initializeFaq();
+    };
+
+    const initializeFaq = () => {
+      const faqButtons = document.querySelectorAll('.faq-button');
+      
+      faqButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          const answer = document.getElementById(button.getAttribute('aria-controls'));
+          const icon = button.querySelector('svg');
+          
+          if (button.getAttribute('aria-expanded') === 'false') {
+            button.setAttribute('aria-expanded', 'true');
+            button.setAttribute('data-headlessui-state', 'open');
+            answer.classList.remove('hidden');
+            icon.classList.add('rotate-180');
+          } else {
+            button.setAttribute('aria-expanded', 'false');
+            button.removeAttribute('data-headlessui-state');
+            answer.classList.add('hidden');
+            icon.classList.remove('rotate-180');
+          }
+        });
+      });
+    };
+
+    document.addEventListener('DOMContentLoaded', () => {
       htmlLoad("[html-load]");
-    </script>
-  </body>
+    });
+  </script>
+</body>
 </html>
