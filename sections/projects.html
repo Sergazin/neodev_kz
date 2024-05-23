@@ -2,75 +2,38 @@
     <h2 class="text-3xl font-bold leading-tight text-center text-gray-800 dark:text-white mb-12">
       Наши работы
     </h2>
-    <div class="relative w-full overflow-x-scroll">
-      <div class="carousel flex transition-transform duration-300">
-        <!-- Project 1 -->
-        <div class="min-w-full bg-gray-800 rounded-lg shadow-lg overflow-hidden mr-4">
-          <img src="assets/project1.png" alt="Project 1" class="w-full h-48 object-cover">
-          <div class="p-6">
-            <h3 class="text-xl font-semibold mb-2">Проект 1</h3>
-            <p class="text-gray-400">Краткое описание проекта, его цели и результаты.</p>
-          </div>
+  
+    <div class="container mx-auto px-4 py-8">
+      <h1 class="text-4xl font-bold text-center mb-8">Наши Работы</h1>
+  
+      <div class="bg-white shadow-md rounded-lg p-6 mb-8">
+        <h2 class="text-2xl font-semibold mb-4">Проект 1: Mobile App</h2>
+        <div class="flex justify-center items-center overflow-hidden h-96">
+          <img src="./assets/project1.png" alt="Mobile App Screenshot" class="max-w-full max-h-full">
         </div>
-        <!-- Project 2 -->
-        <div class="min-w-full bg-gray-800 rounded-lg shadow-lg overflow-hidden mr-4">
-          <img src="assets/project2.png" alt="Project 2" class="w-full h-48 object-cover">
-          <div class="p-6">
-            <h3 class="text-xl font-semibold mb-2">Проект 2</h3>
-            <p class="text-gray-400">Краткое описание проекта, его цели и результаты.</p>
-          </div>
-        </div>
-        <!-- Project 3 -->
-        <div class="min-w-full bg-gray-800 rounded-lg shadow-lg overflow-hidden mr-4">
-          <img src="assets/project3.png" alt="Project 3" class="w-full h-48 object-cover">
-          <div class="p-6">
-            <h3 class="text-xl font-semibold mb-2">Проект 3</h3>
-            <p class="text-gray-400">Краткое описание проекта, его цели и результаты.</p>
-          </div>
-        </div>
-        <!-- Add more projects as needed -->
       </div>
-      <!-- Carousel Controls -->
-      <button class="absolute left-0 top-1/2 transform -translate-y-1/2 p-2 bg-gray-800 rounded-full focus:outline-none prev">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 text-white">
-          <path fill-rule="evenodd" d="M15.75 19.75a.75.75 0 01-1.06 0l-7.5-7.5a.75.75 0 010-1.06l7.5-7.5a.75.75 0 011.06 1.06L9.31 12l6.44 6.44a.75.75 0 010 1.06z" clip-rule="evenodd" />
-        </svg>
-      </button>
-      <button class="absolute right-0 top-1/2 transform -translate-y-1/2 p-2 bg-gray-800 rounded-full focus:outline-none next">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 text-white">
-          <path fill-rule="evenodd" d="M8.25 4.25a.75.75 0 011.06 0l7.5 7.5a.75.75 0 010 1.06l-7.5 7.5a.75.75 0 01-1.06-1.06L14.69 12 8.25 5.56a.75.75 0 010-1.06z" clip-rule="evenodd" />
-        </svg>
-      </button>
+  
+      <div class="bg-white shadow-md rounded-lg p-6 mb-8">
+        <h2 class="text-2xl font-semibold mb-4">Проект 2: Crepe Cafe</h2>
+        <div class="flex justify-center items-center overflow-hidden h-96">
+          <img src="./assets/project2.png" alt="Crepe Cafe Screenshot" class="max-w-full max-h-full">
+        </div>
+      </div>
+  
+      <div class="bg-white shadow-md rounded-lg p-6 mb-8">
+        <h2 class="text-2xl font-semibold mb-4">Проект 3: IMEP</h2>
+        <div class="flex justify-center items-center overflow-hidden h-96">
+          <img src="./assets/project3.png" alt="IMEP Screenshot" class="max-w-full max-h-full">
+        </div>
+      </div>
+  
+      <div class="bg-white shadow-md rounded-lg p-6 mb-8">
+        <h2 class="text-2xl font-semibold mb-4">Проект 4: SAU Expert</h2>
+        <div class="flex justify-center items-center overflow-hidden h-96">
+          <img src="./assets/project4.png" alt="SAU Expert Screenshot" class="max-w-full max-h-full">
+        </div>
+      </div>
     </div>
   </section>
-  
-  <script defer>
-    console.log('Script loaded');
-    document.addEventListener('DOMContentLoaded', () => {
-      console.log('DOM fully loaded and parsed');
-      const prevButton = document.querySelector('.prev');
-      const nextButton = document.querySelector('.next');
-      const carousel = document.querySelector('.carousel');
-      let scrollAmount = 0;
-  
-      if (prevButton && nextButton && carousel) {
-        console.log('Buttons and carousel found');
-        nextButton.addEventListener('click', () => {
-          console.log('Next button clicked');
-          carousel.scrollBy({ left: 300, behavior: 'smooth' });
-          scrollAmount += 300;
-          console.log('Scrolled to:', scrollAmount);
-        });
-  
-        prevButton.addEventListener('click', () => {
-          console.log('Prev button clicked');
-          carousel.scrollBy({ left: -300, behavior: 'smooth' });
-          scrollAmount -= 300;
-          console.log('Scrolled to:', scrollAmount);
-        });
-      } else {
-        console.log('Buttons or carousel not found');
-      }
-    });
-  </script>
+
   
