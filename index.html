@@ -1,173 +1,96 @@
-<!DOCTYPE html>
-<html lang="en" class="h-full w-full">
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>NeoDev | Разработка под ключ</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
-  <style>
-    * {
-      font-family: "Montserrat", sans-serif;
-      font-optical-sizing: auto;
-      font-weight: <weight>;
-      font-style: normal;
-    }
-    .rotate-180 {
-      transform: rotate(180deg);
-    }
-  </style>
-</head>
-<body class="h-full w-full">
-  <div id="app">
-    <div html-load="./sections/header.html"></div>
-    <div html-load="./sections/hero.html"></div>
-    <div html-load="./sections/projects.html"></div>
-    <div html-load="./sections/faq.html"></div>
-    <div html-load="./sections/footer.html"></div>
-    
-  </div>
-  
-  <script>
-    const htmlLoad = async (selector) => {
-      const elements = document.querySelectorAll("[html-load]");
-      for (const element of elements) {
-        const url = element.getAttribute("html-load");
-        const response = await fetch(url);
-        const html = await response.text();
-        element.outerHTML = html;
-      }
-      initializeFaq();
-      initializeCarousel();
-    };
-
-    const initializeFaq = () => {
-      const faqButtons = document.querySelectorAll('.faq-button');
-      
-      faqButtons.forEach(button => {
-        button.addEventListener('click', () => {
-          const answer = document.getElementById(button.getAttribute('aria-controls'));
-          const icon = button.querySelector('svg');
-          
-          if (button.getAttribute('aria-expanded') === 'false') {
-            button.setAttribute('aria-expanded', 'true');
-            button.setAttribute('data-headlessui-state', 'open');
-            answer.classList.remove('hidden');
-            icon.classList.add('rotate-180');
-          } else {
-            button.setAttribute('aria-expanded', 'false');
-            button.removeAttribute('data-headlessui-state');
-            answer.classList.add('hidden');
-            icon.classList.remove('rotate-180');
-          }
-        });
-      });
-    };
-
-    const initializeCarousel = () => {
-      const prevButton = document.querySelector('.left-0');
-      const nextButton = document.querySelector('.right-0');
-      const carousel = document.querySelector('.carousel');
-      let scrollAmount = 0;
-
-      nextButton.addEventListener('click', () => {
-        carousel.scrollBy({ left: 300, behavior: 'smooth' });
-        scrollAmount += 300;
-      });
-
-      prevButton.addEventListener('click', () => {
-        carousel.scrollBy({ left: -300, behavior: 'smooth' });
-        scrollAmount -= 300;
-      });
-    };
-
-    document.addEventListener('DOMContentLoaded', () => {
-      htmlLoad("[html-load]");
-    });
-  </script>
-
-  <!-- Modal for Contact Form -->
-<!-- Contact Form Modal -->
-<div id="contactModal" class="fixed inset-0 flex items-center justify-center hidden">
-  <div class="bg-white rounded-lg shadow-lg p-6">
-    <h2 class="text-xl font-bold mb-4">Оставить заявку</h2>
-    <form id="contactForm">
-      <div class="mb-4">
-        <label for="name" class="block text-sm font-medium text-gray-700">Имя:</label>
-        <input type="text" id="name" name="name" class="mt-1 p-2 block w-full border border-gray-300 rounded-md" required>
+<!DOCTYPE html><html lang="en"> <head><meta charset="UTF-8"><meta name="description" content="Astro description"><meta name="viewport" content="width=device-width"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="generator" content="Astro v4.10.2"><script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script><link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet"><link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"><script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script><title>NeoDev</title><link rel="stylesheet" href="/_astro/index.PguhHb2b.css"><script type="module" src="/_astro/hoisted.sdzAoIhO.js"></script></head> <body>  <div class="h-32"></div> <nav class="fixed top-0 w-full left-0 z-40 group transition" id="navbar" data-aos="fade-down"> <div class="group-[.sticked]:border-b group-[.sticked]:backdrop-blur bg-white/50"> <div class="mx-4 lg:mx-8"> <div class="container relative flex flex-wrap items-center justify-between py-4 lg:py-8 group-[.sticked]:py-1 mx-auto lg:justify-between xl:px-0 transition"> <div class="flex flex-wrap items-center justify-between w-full lg:w-auto"> <a href="/"> <div class="flex items-center space-x-4 group-[.sticked]:space-x-2 text-2xl font-medium text-blue-600 dark:text-gray-100"> <img alt="N" class="w-12 lg:w-16 group-[.sticked]:w-10" src="assets/logo.svg"> <span class="text-2xl lg:text-4xl font-bold group-[.sticked]:text-lg">NeoDev</span> </div> </a> <button aria-label="Toggle Menu" id="mobile-menu-toggle" class="px-2 py-1 ml-auto text-gray-500 rounded-md lg:hidden hover:text-blue-500 focus:text-blue-500 focus:bg-blue-100 focus:outline-none dark:text-gray-300 dark:focus:bg-trueGray-700"> <i class="bx bx-menu text-5xl"></i> </button> </div> <div class="hidden text-center lg:flex lg:items-center"> <ul class="items-center justify-end flex-1 pt-6 list-none lg:pt-0 lg:flex"> <li class="mr-3 nav__item"> <a class="inline-block px-4 py-2 text-lg font-normal text-gray-800 no-underline rounded-md dark:text-gray-200 hover:text-blue-500 focus:text-blue-500 focus:bg-blue-100 focus:outline-none dark:focus:bg-gray-800" href="#about"> О нас </a> </li><li class="mr-3 nav__item"> <a class="inline-block px-4 py-2 text-lg font-normal text-gray-800 no-underline rounded-md dark:text-gray-200 hover:text-blue-500 focus:text-blue-500 focus:bg-blue-100 focus:outline-none dark:focus:bg-gray-800" href="#projects"> Наши работы </a> </li><li class="mr-3 nav__item"> <a class="inline-block px-4 py-2 text-lg font-normal text-gray-800 no-underline rounded-md dark:text-gray-200 hover:text-blue-500 focus:text-blue-500 focus:bg-blue-100 focus:outline-none dark:focus:bg-gray-800" href="#faq"> FAQ </a> </li><li class="mr-3 nav__item"> <a class="inline-block px-4 py-2 text-lg font-normal text-gray-800 no-underline rounded-md dark:text-gray-200 hover:text-blue-500 focus:text-blue-500 focus:bg-blue-100 focus:outline-none dark:focus:bg-gray-800" href="#contact"> Контакты </a> </li> </ul> </div> <div class="hidden mr-3 space-x-4 lg:flex nav__item"> <button class="font-medium text-center rounded-xl transition cursor-pointer flex items-center justify-center gap-2 px-4 py-2 text-sm text-white bg-blue-600 hover:bg-blue-700 active:bg-blue-800" size="sm" data-modal="phone-form"> <i class="bx bx-phone text-xl"></i>
+Оставить заявку </button> </div> </div> </div> </div> </nav> <!-- MOBILE MENU  --> <div class="menu-xs lg:hidden font-medium fixed h-screen w-screen pt-12 text-center inset-0 bg-white/90 text-3xl transition z-10 flex flex-col justify-center hidden z-50" id="mobile-menu"> <button aria-label="Toggle Menu" id="mobile-menu-toggle" class="fixed top-1 right-4 px-2 py-1 ml-auto text-gray-500 rounded-md lg:hidden hover:text-blue-500 focus:text-blue-500 focus:bg-blue-100 focus:outline-none dark:text-gray-300 dark:focus:bg-trueGray-700" onclick="this.parentElement.classList.add('hidden')"> <i class="bx bx-x text-5xl"></i> </button> <a class="px-8 py-4 transition cursor-pointer hover:bg-gray-200/50 rounded hover:text-gray-700 text-gray-700" onclick="this.parentElement.classList.add('hidden')" href="#about"> О нас </a><a class="px-8 py-4 transition cursor-pointer hover:bg-gray-200/50 rounded hover:text-gray-700 text-gray-700" onclick="this.parentElement.classList.add('hidden')" href="#projects"> Наши работы </a><a class="px-8 py-4 transition cursor-pointer hover:bg-gray-200/50 rounded hover:text-gray-700 text-gray-700" onclick="this.parentElement.classList.add('hidden')" href="#faq"> FAQ </a><a class="px-8 py-4 transition cursor-pointer hover:bg-gray-200/50 rounded hover:text-gray-700 text-gray-700" onclick="this.parentElement.classList.add('hidden')" href="#contact"> Контакты </a> <div class="mx-auto mt-4"> <button class="font-medium text-center rounded-xl transition cursor-pointer flex items-center justify-center gap-2 px-8 py-4 text-lg text-white bg-blue-600 hover:bg-blue-700 active:bg-blue-800" data-modal="phone-form"> <i class="bx bx-phone text-xl"></i>
+Оставить заявку </button> </div> </div>  <div class="mx-8"> <div class="container mx-auto flex lg:flex-row flex-col gap-8 py-12 lg:py-24"> <div class="flex flex-col items-center lg:items-start w-full lg:w-1/2 text-center lg:text-left"> <h1 class="text-5xl font-bold leading-snug tracking-tight text-gray-800 lg:text-5xl lg:leading-tight xl:text-6xl xl:leading-tight darkz:text-white max-w-xs lg:max-w-lg xl:max-w-xl" data-aos="fade-right"> <span class="text-blue-500">Новый</span> подход к разработке
+</h1> <p class="py-5 text-xl leading-normal text-gray-500 lg:text-lg xl:text-2xl darkz:text-gray-300" data-aos="fade-right" data-aos-delay="200">
+Мы можем создать для вас сайт любой сложности, от лендинга до
+        интернет-магазина. Все что вам нужно - это связаться с нами.
+</p> <button class="font-medium text-center rounded-xl transition cursor-pointer flex items-center justify-center gap-2 px-8 py-4 text-lg text-white bg-blue-600 hover:bg-blue-700 active:bg-blue-800" data-aos="fade-right" data-aos-delay="400" data-modal="phone-form">
+Оставить заявку
+ </button> </div> <div class="flex items-center justify-center w-full lg:w-1/2"> <div class="w-full max-w-md" data-aos="fade-bottom" data-aos-delay="200"> <lottie-player autoplay loop mode="normal" src="/assets/lottie/laptop_2.json"></lottie-player> </div> </div> </div> </div> <section class="lg:pb-10" data-astro-cid-6wbqz6xf> <div class="relative gap-28 m-auto flex overflow-hidden border-y border-default-200 py-6 text-xl lg:text-2xl font-medium text-gray-600" data-aos="fade-up" data-aos-delay="400" data-astro-cid-6wbqz6xf> <div class="marquee__group gap-28 flex items-center justify-around flex-shrink-0 min-w-full" data-astro-cid-6wbqz6xf> <div class="py-2" data-astro-cid-6wbqz6xf>UI-UX Проектирование</div><div class="py-2" data-astro-cid-6wbqz6xf>Web Разработка</div><div class="py-2" data-astro-cid-6wbqz6xf>iOS/Android разработка</div><div class="py-2" data-astro-cid-6wbqz6xf>Backend (Серверная) разработка</div><div class="py-2" data-astro-cid-6wbqz6xf>Разработка под Windows/Mac/Linux</div><div class="py-2" data-astro-cid-6wbqz6xf>IoT решения</div> </div><div class="marquee__group gap-28 flex items-center justify-around flex-shrink-0 min-w-full" data-astro-cid-6wbqz6xf> <div class="py-2" data-astro-cid-6wbqz6xf>UI-UX Проектирование</div><div class="py-2" data-astro-cid-6wbqz6xf>Web Разработка</div><div class="py-2" data-astro-cid-6wbqz6xf>iOS/Android разработка</div><div class="py-2" data-astro-cid-6wbqz6xf>Backend (Серверная) разработка</div><div class="py-2" data-astro-cid-6wbqz6xf>Разработка под Windows/Mac/Linux</div><div class="py-2" data-astro-cid-6wbqz6xf>IoT решения</div> </div> </div> </section>  <section class="mx-8" id="about"> <div class="container mx-auto flex flex-col lg:flex-row py-24 lg:py-32 gap-6 lg:gap-24"> <div class="flex items-center justify-center w-full lg:w-1/2"> <img alt="NeoDev Logo" class="rounded-xl bg-cover bg-center h-64" style="color: transparent" src="assets/logo.svg" data-aos="fade-right"> </div> <div class="flex flex-wrap items-center w-full lg:w-1/2"> <div> <div class="flex flex-col w-full mt-4"> <h3 class="max-w-2xl mt-3 text-3xl font-bold leading-snug tracking-tight text-gray-800 lg:leading-tight lg:text-4xl dark:text-white" data-aos="fade-up" data-aos-delay="100">
+О нас
+</h3> <p class="max-w-2xl py-4 text-lg leading-normal text-gray-500 lg:text-xl xl:text-xl dark:text-gray-300" data-aos="fade-up" data-aos-delay="200"> <span class="font-bold">NeoDev</span> — ведущая студия разработки, специализирующаяся
+            на создании высококачественных и инновационных веб-сайтов и приложений,
+            адаптированных под уникальные нужды бизнеса любого размера.
+</p> </div> <div class="w-full mt-5"> <div class="flex items-start mt-8 space-x-4" data-aos="fade-up" data-aos-delay="300"> <div class="flex items-center justify-center flex-shrink-0 mt-1 bg-blue-500 rounded-full w-14 h-14"> <i class="bx bx-rocket text-white text-3xl"></i> </div> <div> <h4 class="text-xl font-medium text-gray-800 dark:text-gray-200"> Инновации </h4> <p class="mt-1 text-gray-500 dark:text-gray-400"> Мы опережаем тенденции в отрасли, предлагая новейшие технологические решения. </p> </div> </div><div class="flex items-start mt-8 space-x-4" data-aos="fade-up" data-aos-delay="400"> <div class="flex items-center justify-center flex-shrink-0 mt-1 bg-blue-500 rounded-full w-14 h-14"> <i class="bx bx-check-shield text-white text-3xl"></i> </div> <div> <h4 class="text-xl font-medium text-gray-800 dark:text-gray-200"> Качество </h4> <p class="mt-1 text-gray-500 dark:text-gray-400"> Мы придерживаемся самых высоких стандартов качества в каждом проекте, за который беремся. </p> </div> </div><div class="flex items-start mt-8 space-x-4" data-aos="fade-up" data-aos-delay="500"> <div class="flex items-center justify-center flex-shrink-0 mt-1 bg-blue-500 rounded-full w-14 h-14"> <i class="bx bx-like text-white text-3xl"></i> </div> <div> <h4 class="text-xl font-medium text-gray-800 dark:text-gray-200"> Удовлетворенность клиентов </h4> <p class="mt-1 text-gray-500 dark:text-gray-400"> Успех наших клиентов — наш успех. Мы стремимся строить долгосрочные отношения, основанные на доверии и удовлетворенности. </p> </div> </div> </div> </div> </div> </div> </section> <section class="relative py-20 bg-cover bg-no-repeat bg-center text-white" style="background-image: none; z-index: 0;"> <div class="absolute inset-0 w-full h-full bg-black/50 -z-10"></div> <div class="mx-8"> <div class="container mx-auto"> <div class="pb-10 lg:pb-0 flex flex-col items-center justify-center"> <h1 class="text-3xl md:text-4xl/tight font-semibold text-center">
+Получите бесплатную консультацию
+</h1> <p class="text-base font-normal max-w-xl text-center mx-auto mt-6">
+Если у вас есть вопросы, вы можете связаться с нами и получить
+          бесплатную консультацию
+</p> <div class="flex flex-wrap mt-6 gap-3"> <button data-modal="phone-form" class="py-2 px-6 rounded-md border border-white text-base hover:border-white hover:bg-white hover:text-primary transition-all duration-500 font-medium">
+Связаться с нами
+</button> </div> </div> </div> </div> <div style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; overflow: hidden; z-index: -100; clip-path: polygon(0px 0px, 100% 0px, 100% 100%, 0px 100%);"> <div class="bg-center bg-cover w-full h-full fixed overflow-hidden top-0 left-0" style="background-image: url(&quot;/assets/backgrounds/matrix.jpg&quot;);"></div> </div> </section> <section class="py-32 bg-gray-50 overflow-hidden" id="projects"> <div class="mx-8"> <div class="container px-4 mx-auto"> <div class="flex flex-wrap items-center justify-between max-w-2xl lg:max-w-full mb-12"> <div class="w-full lg:w-1/2 mb-4 lg:mb-0"> <span class="text-sm font-medium py-1 px-3 rounded-full text-blue-500 bg-blue-500/10" data-aos="fade-right">Наши работы  </span> <h2 class="font-bold mt-4 text-4xl" style="visibility: visible; animation-name: fadeInDown;" data-aos="fade-right" data-aos-delay="200">
+Мы реализовали сотни успешных проектов
+</h2> </div> <div class="w-full lg:w-1/2 lg:pl-16"> <p class="text-gray-400 leading-loose italic" style="visibility: visible; animation-name: fadeInUp;" data-aos="fade-up" data-aos-delay="400">
+Наши работы отличаются качеством и уникальностью. Мы гордимся своими
+            проектами и готовы делиться результатами с вами. Мы создаем сайты и
+            приложения, которые работают и приносят прибыль бизнесу
+</p> </div> </div> <div class="flex flex-wrap -mx-3 -mb-6 text-center"> <div class="hover-up-5 w-full md:w-1/2 lg:w-1/3 px-3 mb-6    " data-aos="fade-up" data-aos-delay="500" style="visibility: visible; animation-delay: 0s; animation-name: fadeInUp;"> <div class="px-2 pt-2 pb-12 bg-white shadow rounded-lg"> <a href="https://supermoika.kz" target="_blank"> <div style="background-image:url(./assets/projects/project1.png)" class="h-72 bg-cover bg-center rounded-t-lg"></div> </a> <h3 class="mb-2 font-bold font-heading">Supermoika.kz</h3> <p class="text-sm text-blueGray-400 leading-relaxed"> <a href="https://supermoika.kz" target="_blank">
+Посмотреть проект
+</a> </p> </div> </div><div class="hover-up-5 w-full md:w-1/2 lg:w-1/3 px-3 mb-6    " data-aos="fade-up" data-aos-delay="600" style="visibility: visible; animation-delay: 0s; animation-name: fadeInUp;"> <div class="px-2 pt-2 pb-12 bg-white shadow rounded-lg"> <a href="https://crepecafe.kz" target="_blank"> <div style="background-image:url(./assets/projects/project2.png)" class="h-72 bg-cover bg-center rounded-t-lg"></div> </a> <h3 class="mb-2 font-bold font-heading">Crepe Cafe</h3> <p class="text-sm text-blueGray-400 leading-relaxed"> <a href="https://crepecafe.kz" target="_blank">
+Посмотреть проект
+</a> </p> </div> </div><div class="hover-up-5 w-full md:w-1/2 lg:w-1/3 px-3 mb-6    " data-aos="fade-up" data-aos-delay="700" style="visibility: visible; animation-delay: 0s; animation-name: fadeInUp;"> <div class="px-2 pt-2 pb-12 bg-white shadow rounded-lg"> <a href="https://iwep.kz" target="_blank"> <div style="background-image:url(./assets/projects/project3.png)" class="h-72 bg-cover bg-center rounded-t-lg"></div> </a> <h3 class="mb-2 font-bold font-heading">IWEP</h3> <p class="text-sm text-blueGray-400 leading-relaxed"> <a href="https://iwep.kz" target="_blank">
+Посмотреть проект
+</a> </p> </div> </div><div class="hover-up-5 w-full md:w-1/2 lg:w-1/3 px-3 mb-6    " data-aos="fade-up" data-aos-delay="800" style="visibility: visible; animation-delay: 0s; animation-name: fadeInUp;"> <div class="px-2 pt-2 pb-12 bg-white shadow rounded-lg"> <a href="https://sauexpert.kz" target="_blank"> <div style="background-image:url(./assets/projects/project4.png)" class="h-72 bg-cover bg-center rounded-t-lg"></div> </a> <h3 class="mb-2 font-bold font-heading">SAU Expert</h3> <p class="text-sm text-blueGray-400 leading-relaxed"> <a href="https://sauexpert.kz" target="_blank">
+Посмотреть проект
+</a> </p> </div> </div><div class="hover-up-5 w-full md:w-1/2 lg:w-1/3 px-3 mb-6    " data-aos="fade-up" data-aos-delay="900" style="visibility: visible; animation-delay: 0s; animation-name: fadeInUp;"> <div class="px-2 pt-2 pb-12 bg-white shadow rounded-lg"> <a href="https://alliance.global" target="_blank"> <div style="background-image:url(./assets/projects/project5.png)" class="h-72 bg-cover bg-center rounded-t-lg"></div> </a> <h3 class="mb-2 font-bold font-heading">Global Alliance of Leaders</h3> <p class="text-sm text-blueGray-400 leading-relaxed"> <a href="https://alliance.global" target="_blank">
+Посмотреть проект
+</a> </p> </div> </div><div class="hover-up-5 w-full md:w-1/2 lg:w-1/3 px-3 mb-6    " data-aos="fade-up" data-aos-delay="1000" style="visibility: visible; animation-delay: 0s; animation-name: fadeInUp;"> <div class="px-2 pt-2 pb-12 bg-white shadow rounded-lg"> <a href="https://timeapp.kz/" target="_blank"> <div style="background-image:url(./assets/projects/project6.png)" class="h-72 bg-cover bg-center rounded-t-lg"></div> </a> <h3 class="mb-2 font-bold font-heading">TimeApp</h3> <p class="text-sm text-blueGray-400 leading-relaxed"> <a href="https://timeapp.kz/" target="_blank">
+Посмотреть проект
+</a> </p> </div> </div> </div> </div> </div> </section> <section id="services" class="mx-4"> <div class="container mx-auto py-24"> <div class="mx-auto text-center"> <span class="text-sm font-medium py-1 px-3 rounded-full text-blue-500 bg-blue-500/10" data-aos="fade-up">Наши услуги </span> <h2 class="text-3xl md:text-4xl/tight font-semibold text-black mt-4 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="150">
+Большой спектр услуг по разработке
+</h2> <p class="text-base font-medium mt-4 text-muted max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="300">
+Наша команда специалистов готова помочь вам в решении любых задач по
+        разработке и продвижению вашего проекта.
+</p> </div> <div class="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-x-3 gap-y-12 md:gap-y-12 lg:gap-y-24 md:pt-20 pt-12"> <div class="text-center" data-aos="fade-up" data-aos-delay="400"> <div class="flex items-center justify-center"> <div class="items-center justify-center flex bg-blue-500/10 rounded-full h-20 w-20 border"> <i class="bx bx-globe text-blue-500 text-5xl"></i> </div> </div> <h1 class="text-xl font-semibold pt-4">Веб-разработка</h1> <p class="text-base text-gray-600 mt-2">Создание веб-сайтов и веб-приложений с использованием современных технологий.</p> </div><div class="text-center" data-aos="fade-up" data-aos-delay="550"> <div class="flex items-center justify-center"> <div class="items-center justify-center flex bg-blue-500/10 rounded-full h-20 w-20 border"> <i class="bx bxl-apple text-blue-500 text-5xl"></i> </div> </div> <h1 class="text-xl font-semibold pt-4">Мобильная разработка</h1> <p class="text-base text-gray-600 mt-2">Разработка мобильных приложений для iOS и Android.</p> </div><div class="text-center" data-aos="fade-up" data-aos-delay="700"> <div class="flex items-center justify-center"> <div class="items-center justify-center flex bg-blue-500/10 rounded-full h-20 w-20 border"> <i class="bx bx-server text-blue-500 text-5xl"></i> </div> </div> <h1 class="text-xl font-semibold pt-4">Backend-разработка</h1> <p class="text-base text-gray-600 mt-2">Создание серверной части приложений, обработка данных и взаимодействие с базой данных.</p> </div><div class="text-center" data-aos="fade-up" data-aos-delay="850"> <div class="flex items-center justify-center"> <div class="items-center justify-center flex bg-blue-500/10 rounded-full h-20 w-20 border"> <i class="bx bx-desktop text-blue-500 text-5xl"></i> </div> </div> <h1 class="text-xl font-semibold pt-4">Разработка для ПК</h1> <p class="text-base text-gray-600 mt-2">Создание приложений для настольных компьютеров (Windows, macOS, Linux).</p> </div><div class="text-center" data-aos="fade-up" data-aos-delay="1000"> <div class="flex items-center justify-center"> <div class="items-center justify-center flex bg-blue-500/10 rounded-full h-20 w-20 border"> <i class="bx bx-link text-blue-500 text-5xl"></i> </div> </div> <h1 class="text-xl font-semibold pt-4">Разработка блокчейна</h1> <p class="text-base text-gray-600 mt-2">Разработка децентрализованных приложений (DApps) на блокчейне.</p> </div><div class="text-center" data-aos="fade-up" data-aos-delay="1150"> <div class="flex items-center justify-center"> <div class="items-center justify-center flex bg-blue-500/10 rounded-full h-20 w-20 border"> <i class="bx bx-brain text-blue-500 text-5xl"></i> </div> </div> <h1 class="text-xl font-semibold pt-4">Разработка искусственного интеллекта (AI)</h1> <p class="text-base text-gray-600 mt-2">Создание алгоритмов машинного обучения, нейронных сетей и решений на основе искусственного интеллекта.</p> </div><div class="text-center" data-aos="fade-up" data-aos-delay="1300"> <div class="flex items-center justify-center"> <div class="items-center justify-center flex bg-blue-500/10 rounded-full h-20 w-20 border"> <i class="bx bx-bug text-blue-500 text-5xl"></i> </div> </div> <h1 class="text-xl font-semibold pt-4">Тестирование и QA</h1> <p class="text-base text-gray-600 mt-2">Проверка и обеспечение качества программного обеспечения.</p> </div><div class="text-center" data-aos="fade-up" data-aos-delay="1450"> <div class="flex items-center justify-center"> <div class="items-center justify-center flex bg-blue-500/10 rounded-full h-20 w-20 border"> <i class="bx bx-paint text-blue-500 text-5xl"></i> </div> </div> <h1 class="text-xl font-semibold pt-4">UI/UX-дизайн</h1> <p class="text-base text-gray-600 mt-2">Разработка пользовательских интерфейсов и оптимизация пользовательского опыта.</p> </div> </div> <div class="flex items-center justify-center mt-12" data-aos="fade-up" data-aos-delay="500"> <button class="font-medium text-center rounded-xl transition cursor-pointer flex items-center justify-center gap-2 px-8 py-4 text-lg text-white bg-blue-600 hover:bg-blue-700 active:bg-blue-800" data-modal="phone-form"> <i class="bx bx-phone text-xl"></i>
+Оставить заявку </button> </div> </div> </section>  <section class="bg-gradient-to-r from-gray-100/70 to-gray-100 relative"> <div class="absolute top-0 inset-x-0 hidden sm:block"> <img src="/assets/cliparts/white-wave-b5c33892.svg" alt="svg" class="w-full -scale-x-100"> </div> <div class="py-32  mx-8"> <div class="container mx-auto aos-init aos-animate" data-aos="fade-up" data-aos-duration="300"> <div class="text-center"> <span class="text-sm font-medium py-1 px-3 rounded-full text-blue-500 bg-blue-500/10">Наши клиенты </span> <h1 class="text-3xl/tight font-medium mt-3 mb-4">
+Эти компании доверяют нам свои проекты
+</h1> <p class="text-gray-500">
+Мы работаем с крупными компаниями и стартапами, помогая им решать
+          сложные задачи и создавать продукты, которые меняют мир.
+</p> </div> <div class="flex flex-wrap items-center justify-center lg:gap-24 gap-10 mt-14"> <div> <img src="/assets/clients/fnn.svg" class="h-8"> </div><div> <img src="/assets/clients/kap.svg" class="h-8"> </div><div> <img src="/assets/clients/binance.svg" class="h-8"> </div><div> <img src="/assets/clients/undp.svg" class="h-8"> </div><div> <img src="/assets/clients/mycar.svg" class="h-8"> </div> </div> </div> </div> </section> <section id="faq"> <div class="mx-8"> <div class="container py-24 mx-auto xl:px-0 flex w-full flex-col mt-4 items-center justify-center text-center"> <span class="text-sm font-medium py-1 px-3 rounded-full text-blue-500 bg-blue-500/10" data-aos="fade-up">FAQ </span> <h2 class="max-w-2xl text-3xl font-bold leading-snug tracking-tight text-gray-800 lg:leading-tight lg:text-4xl dark:text-white" data-aos="fade-up" data-aos-delay="150">
+Часто задаваемые вопросы
+</h2> <p class="mt-4 text-lg text-gray-600 dark:text-gray-400" data-aos="fade-up" data-aos-delay="300">
+Наши эксперты готовы ответить на любые вопросы, связанные с разработкой
+        мобильных и веб-приложений.
+</p> <div class="mt-8"> <div class="w-full mx-auto rounded-2xl grid xl:grid-cols-2 gap-4"> <div class="mb-2" data-aos="fade-up" data-aos-delay="200"> <button class="faq-button flex items-center justify-between w-full px-4 py-4 text-lg text-left text-gray-800 rounded-lg bg-gray-50 hover:bg-gray-100 focus:outline-none focus-visible:ring focus-visible:ring-blue-100 focus-visible:ring-opacity-75 dark:bg-trueGray-800 dark:text-gray-200" type="button" aria-expanded="false" aria-controls="faq0"> <span>Какие услуги предлагает NeoDev?</span> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" class="w-5 h-5 text-blue-500 transition-transform duration-300"> <path fill-rule="evenodd" d="M11.47 7.72a.75.75 0 011.06 0l7.5 7.5a.75.75 0 11-1.06 1.06L12 9.31l-6.97 6.97a.75.75 0 01-1.06-1.06l7.5-7.5z" clip-rule="evenodd"></path> </svg> </button> <div class="faq-answer hidden px-4 pt-4 pb-2 text-gray-500 dark:text-gray-300" id="faq0"> NeoDev специализируется на разработке мобильных и веб-приложений для бизнеса. Мы предлагаем комплексные решения, включая дизайн, разработку, тестирование, развертывание и поддержку. </div> </div><div class="mb-2" data-aos="fade-up" data-aos-delay="300"> <button class="faq-button flex items-center justify-between w-full px-4 py-4 text-lg text-left text-gray-800 rounded-lg bg-gray-50 hover:bg-gray-100 focus:outline-none focus-visible:ring focus-visible:ring-blue-100 focus-visible:ring-opacity-75 dark:bg-trueGray-800 dark:text-gray-200" type="button" aria-expanded="false" aria-controls="faq1"> <span>Как долго NeoDev работает на рынке?</span> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" class="w-5 h-5 text-blue-500 transition-transform duration-300"> <path fill-rule="evenodd" d="M11.47 7.72a.75.75 0 011.06 0l7.5 7.5a.75.75 0 11-1.06 1.06L12 9.31l-6.97 6.97a.75.75 0 01-1.06-1.06l7.5-7.5z" clip-rule="evenodd"></path> </svg> </button> <div class="faq-answer hidden px-4 pt-4 pb-2 text-gray-500 dark:text-gray-300" id="faq1"> NeoDev занимается разработкой инновационных и надежных мобильных и веб-приложений для бизнеса уже более 10 лет. </div> </div><div class="mb-2" data-aos="fade-up" data-aos-delay="400"> <button class="faq-button flex items-center justify-between w-full px-4 py-4 text-lg text-left text-gray-800 rounded-lg bg-gray-50 hover:bg-gray-100 focus:outline-none focus-visible:ring focus-visible:ring-blue-100 focus-visible:ring-opacity-75 dark:bg-trueGray-800 dark:text-gray-200" type="button" aria-expanded="false" aria-controls="faq2"> <span>Может ли NeoDev помочь с разработкой приложений для iOS и Android?</span> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" class="w-5 h-5 text-blue-500 transition-transform duration-300"> <path fill-rule="evenodd" d="M11.47 7.72a.75.75 0 011.06 0l7.5 7.5a.75.75 0 11-1.06 1.06L12 9.31l-6.97 6.97a.75.75 0 01-1.06-1.06l7.5-7.5z" clip-rule="evenodd"></path> </svg> </button> <div class="faq-answer hidden px-4 pt-4 pb-2 text-gray-500 dark:text-gray-300" id="faq2"> Да, наша команда профессионалов разрабатывает приложения для обеих платформ, обеспечивая бесшовный опыт на всех устройствах. </div> </div><div class="mb-2" data-aos="fade-up" data-aos-delay="500"> <button class="faq-button flex items-center justify-between w-full px-4 py-4 text-lg text-left text-gray-800 rounded-lg bg-gray-50 hover:bg-gray-100 focus:outline-none focus-visible:ring focus-visible:ring-blue-100 focus-visible:ring-opacity-75 dark:bg-trueGray-800 dark:text-gray-200" type="button" aria-expanded="false" aria-controls="faq3"> <span>С какими отраслями имеет опыт работы NeoDev?</span> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" class="w-5 h-5 text-blue-500 transition-transform duration-300"> <path fill-rule="evenodd" d="M11.47 7.72a.75.75 0 011.06 0l7.5 7.5a.75.75 0 11-1.06 1.06L12 9.31l-6.97 6.97a.75.75 0 01-1.06-1.06l7.5-7.5z" clip-rule="evenodd"></path> </svg> </button> <div class="faq-answer hidden px-4 pt-4 pb-2 text-gray-500 dark:text-gray-300" id="faq3"> У нас есть опыт работы с широким спектром отраслей, включая финансы, здравоохранение, образование, розничную торговлю и другие. </div> </div><div class="mb-2" data-aos="fade-up" data-aos-delay="600"> <button class="faq-button flex items-center justify-between w-full px-4 py-4 text-lg text-left text-gray-800 rounded-lg bg-gray-50 hover:bg-gray-100 focus:outline-none focus-visible:ring focus-visible:ring-blue-100 focus-visible:ring-opacity-75 dark:bg-trueGray-800 dark:text-gray-200" type="button" aria-expanded="false" aria-controls="faq4"> <span>Предоставляете ли вы услуги по разработке кастомизированных приложений?</span> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" class="w-5 h-5 text-blue-500 transition-transform duration-300"> <path fill-rule="evenodd" d="M11.47 7.72a.75.75 0 011.06 0l7.5 7.5a.75.75 0 11-1.06 1.06L12 9.31l-6.97 6.97a.75.75 0 01-1.06-1.06l7.5-7.5z" clip-rule="evenodd"></path> </svg> </button> <div class="faq-answer hidden px-4 pt-4 pb-2 text-gray-500 dark:text-gray-300" id="faq4"> Да, мы специализируемся на разработке приложений, адаптированных к специфическим нуждам и целям вашего бизнеса. </div> </div><div class="mb-2" data-aos="fade-up" data-aos-delay="700"> <button class="faq-button flex items-center justify-between w-full px-4 py-4 text-lg text-left text-gray-800 rounded-lg bg-gray-50 hover:bg-gray-100 focus:outline-none focus-visible:ring focus-visible:ring-blue-100 focus-visible:ring-opacity-75 dark:bg-trueGray-800 dark:text-gray-200" type="button" aria-expanded="false" aria-controls="faq5"> <span>Как NeoDev обеспечивает качество приложений?</span> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" class="w-5 h-5 text-blue-500 transition-transform duration-300"> <path fill-rule="evenodd" d="M11.47 7.72a.75.75 0 011.06 0l7.5 7.5a.75.75 0 11-1.06 1.06L12 9.31l-6.97 6.97a.75.75 0 01-1.06-1.06l7.5-7.5z" clip-rule="evenodd"></path> </svg> </button> <div class="faq-answer hidden px-4 pt-4 pb-2 text-gray-500 dark:text-gray-300" id="faq5"> Мы следуем комплексному процессу обеспечения качества, который включает тщательное тестирование и обратную связь, чтобы гарантиров ать наивысшее качество и производительность наших приложений. </div> </div><div class="mb-2" data-aos="fade-up" data-aos-delay="800"> <button class="faq-button flex items-center justify-between w-full px-4 py-4 text-lg text-left text-gray-800 rounded-lg bg-gray-50 hover:bg-gray-100 focus:outline-none focus-visible:ring focus-visible:ring-blue-100 focus-visible:ring-opacity-75 dark:bg-trueGray-800 dark:text-gray-200" type="button" aria-expanded="false" aria-controls="faq6"> <span>Каков типичный срок выполнения проекта?</span> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" class="w-5 h-5 text-blue-500 transition-transform duration-300"> <path fill-rule="evenodd" d="M11.47 7.72a.75.75 0 011.06 0l7.5 7.5a.75.75 0 11-1.06 1.06L12 9.31l-6.97 6.97a.75.75 0 01-1.06-1.06l7.5-7.5z" clip-rule="evenodd"></path> </svg> </button> <div class="faq-answer hidden px-4 pt-4 pb-2 text-gray-500 dark:text-gray-300" id="faq6"> Сроки выполнения проекта могут варьироваться в зависимости от его сложности и объема. Однако, после первоначальных консультаций мы предоставляем детальный план проекта и сроки. </div> </div><div class="mb-2" data-aos="fade-up" data-aos-delay="900"> <button class="faq-button flex items-center justify-between w-full px-4 py-4 text-lg text-left text-gray-800 rounded-lg bg-gray-50 hover:bg-gray-100 focus:outline-none focus-visible:ring focus-visible:ring-blue-100 focus-visible:ring-opacity-75 dark:bg-trueGray-800 dark:text-gray-200" type="button" aria-expanded="false" aria-controls="faq7"> <span>Какую поддержку NeoDev предлагает после запуска приложения?</span> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" class="w-5 h-5 text-blue-500 transition-transform duration-300"> <path fill-rule="evenodd" d="M11.47 7.72a.75.75 0 011.06 0l7.5 7.5a.75.75 0 11-1.06 1.06L12 9.31l-6.97 6.97a.75.75 0 01-1.06-1.06l7.5-7.5z" clip-rule="evenodd"></path> </svg> </button> <div class="faq-answer hidden px-4 pt-4 pb-2 text-gray-500 dark:text-gray-300" id="faq7"> Мы предлагаем постоянные услуги по техническому обслуживанию и поддержке, чтобы ваше приложение оставалось актуальным, безопасным и работало без сбоев. </div> </div><div class="mb-2" data-aos="fade-up" data-aos-delay="1000"> <button class="faq-button flex items-center justify-between w-full px-4 py-4 text-lg text-left text-gray-800 rounded-lg bg-gray-50 hover:bg-gray-100 focus:outline-none focus-visible:ring focus-visible:ring-blue-100 focus-visible:ring-opacity-75 dark:bg-trueGray-800 dark:text-gray-200" type="button" aria-expanded="false" aria-controls="faq8"> <span>Может ли NeoDev интегрировать существующие системы и сторонние сервисы в приложения?</span> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" class="w-5 h-5 text-blue-500 transition-transform duration-300"> <path fill-rule="evenodd" d="M11.47 7.72a.75.75 0 011.06 0l7.5 7.5a.75.75 0 11-1.06 1.06L12 9.31l-6.97 6.97a.75.75 0 01-1.06-1.06l7.5-7.5z" clip-rule="evenodd"></path> </svg> </button> <div class="faq-answer hidden px-4 pt-4 pb-2 text-gray-500 dark:text-gray-300" id="faq8"> Да, у нас есть большой опыт интеграции различных систем и сторонних сервисов, чтобы ваше приложение работало без сбоев с вашей существующей инфраструктурой. </div> </div><div class="mb-2" data-aos="fade-up" data-aos-delay="1100"> <button class="faq-button flex items-center justify-between w-full px-4 py-4 text-lg text-left text-gray-800 rounded-lg bg-gray-50 hover:bg-gray-100 focus:outline-none focus-visible:ring focus-visible:ring-blue-100 focus-visible:ring-opacity-75 dark:bg-trueGray-800 dark:text-gray-200" type="button" aria-expanded="false" aria-controls="faq9"> <span>Как начать сотрудничество с NeoDev?</span> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" class="w-5 h-5 text-blue-500 transition-transform duration-300"> <path fill-rule="evenodd" d="M11.47 7.72a.75.75 0 011.06 0l7.5 7.5a.75.75 0 11-1.06 1.06L12 9.31l-6.97 6.97a.75.75 0 01-1.06-1.06l7.5-7.5z" clip-rule="evenodd"></path> </svg> </button> <div class="faq-answer hidden px-4 pt-4 pb-2 text-gray-500 dark:text-gray-300" id="faq9"> Свяжитесь с нами через наш веб-сайт, и мы договоримся о консультации для обсуждения ваших потребностей и начала процесса разработки. </div> </div> <script>
+            document.addEventListener("DOMContentLoaded", () => {
+              const faqButtons = document.querySelectorAll(".faq-button");
+              faqButtons.forEach((button) => {
+                button.addEventListener("click", () => {
+                  const expanded =
+                    button.getAttribute("aria-expanded") === "true";
+                  button.setAttribute("aria-expanded", !expanded);
+                  button
+                    .querySelector("svg")
+                    .classList.toggle("rotate-180", !expanded);
+                  const answer = document.getElementById(
+                    button.getAttribute("aria-controls"),
+                  );
+                  answer.classList.toggle("hidden", expanded);
+                });
+              });
+            });
+          </script> </div> </div> </div> </div> </section> <section class="bg-gray-50" id="contact"> <div class="mx-8"> <div class="container mx-auto py-20"> <div class="grid lg:grid-cols-3 gap-6 items-center"> <div> <div> <span class="text-sm font-medium py-1 px-3 rounded-full text-blue-500 bg-blue-500/10" data-aos="fade-right">Напишите нам </span> </div> <h2 class="text-3xl md:text-4xl/tight font-semibold mt-4" data-aos="fade-right" data-aos-delay="200">
+Мы всегда рады помочь Вам в решении любых вопросов
+</h2> <div class="flex flex-col sm:flex-row items-center gap-5 text-center sm:text-start mt-10" data-aos="fade-right" data-aos-delay="400"> <div class="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center"> <i class="bx bx-map text-2xl text-blue-500"></i> </div> <div> <h5 class="text-base text-muted font-medium mb-1">
+Алматы, ул. Абая 64
+</h5> <a href="#" class="text-xs text-blue-500 font-bold uppercase">Показать на карте
+</a> </div> </div>  <div class="flex flex-col sm:flex-row items-center gap-5 text-center sm:text-start mt-10" data-aos="fade-right" data-aos-delay="600"> <div class="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center"> <i class="bx bx-phone text-2xl text-blue-500"></i> </div> <div> <h5 class="text-base text-muted font-medium mb-1">
++7 (708) 323 69 56
+</h5> <a class="text-xs text-blue-500 font-bold uppercase" href="tel:+77083236956">Позвонить
+</a> </div> </div> </div> <div class="lg:col-span-2 lg:ms-24" data-aos="fade-up" data-aos-delay="300"> <div class="p-6 md:p-12 rounded-md shadow-lg bg-white"> <form id="contactForm"> <div class="grid sm:grid-cols-2 gap-6"> <div> <label for="formFirstName" class="block text-sm/normal font-semibold text-black mb-2">Имя
+</label> <input type="text" class="block w-full text-sm rounded-md py-3 px-4 border border-gray-200 focus:border-blue-500 focus:ring-transparent outline-none" name="name" placeholder="Введите ваше имя..." required=""> </div>  <div> <label for="formPhone" class="block text-sm/normal font-semibold text-black mb-2">Телефон
+</label> <input type="text" class="block w-full text-sm rounded-md py-3 px-4 border border-gray-200 focus:border-blue-500 focus:ring-transparent outline-none" id="phone-input" name="phone" placeholder="Введите ваш телефон..." required=""> </div> <div class="sm:col-span-2"> <div class="mb-4"> <label for="formMessages" class="block text-sm/normal font-semibold text-black mb-2">Сообщение
+</label> <textarea class="block w-full text-sm rounded-md py-3 px-4 border border-gray-200 focus:border-blue-500 focus:ring-transparent outline-none" name="message" rows="4" placeholder="Введите ваше сообщение..." required=""></textarea> </div> </div> </div> <div class="mt-4"> <button class="font-medium text-center rounded-xl transition cursor-pointer flex items-center justify-center gap-2 px-8 py-4 text-lg text-white bg-blue-600 hover:bg-blue-700 active:bg-blue-800" type="submit"> <i class="bx bx-send"></i>
+Отправить </button> </div> </form> </div> </div> </div> </div> </div> </section>  <div class="relative mx-8"> <div class="container mx-auto"> <div class="grid grid-cols-1 gap-10 pt-10 mx-auto border-t border-gray-100 dark:border-trueGray-700 lg:grid-cols-2"> <div> <div> <a class="flex items-center space-x-2 text-2xl font-medium text-blue-500 dark:text-gray-100" href="/"> <img alt="NeoDev" loading="lazy" width="32" height="32" decoding="async" data-nimg="1" class="w-8" style="color: transparent" src="assets/logo.svg"> <span>NeoDev</span> </a> </div> <div class="max-w-md mt-4 text-gray-500 dark:text-gray-400">
+NeoDev - профессиональная студия разработки, создающая инновационные
+          решения для вашего бизнеса.
+</div> </div> <div class="flex flex w-full -mt-2 -ml-3 lg:ml-0"> <a class="inline w-full px-4 py-2 text-gray-500 rounded-md dark:text-gray-300 hover:text-blue-500 focus:text-blue-500 focus:bg-blue-100 focus:outline-none dark:focus:bg-trueGray-700" href="#about"> О нас </a><a class="inline w-full px-4 py-2 text-gray-500 rounded-md dark:text-gray-300 hover:text-blue-500 focus:text-blue-500 focus:bg-blue-100 focus:outline-none dark:focus:bg-trueGray-700" href="#projects"> Наши работы </a><a class="inline w-full px-4 py-2 text-gray-500 rounded-md dark:text-gray-300 hover:text-blue-500 focus:text-blue-500 focus:bg-blue-100 focus:outline-none dark:focus:bg-trueGray-700" href="#faq"> FAQ </a><a class="inline w-full px-4 py-2 text-gray-500 rounded-md dark:text-gray-300 hover:text-blue-500 focus:text-blue-500 focus:bg-blue-100 focus:outline-none dark:focus:bg-trueGray-700" href="#contact"> Контакты </a> </div> <!-- 
+        <div class="mt-4 text-gray-500 dark:text-gray-400">
+          Телефон: +77083236956
       </div>
-      <div class="mb-4">
-        <label for="phone" class="block text-sm font-medium text-gray-700">Номер телефона:</label>
-        <input type="text" id="phone" name="phone" class="mt-1 p-2 block w-full border border-gray-300 rounded-md" pattern="^\+7[0-9]{10}$" required>
-      </div>
-      <div class="flex justify-end">
-        <button type="button" class="bg-gray-500 text-white px-4 py-2 rounded mr-2" onclick="closeModal()">Отмена</button>
-        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Отправить</button>
-      </div>
-    </form>
-  </div>
-</div>
-
-
-<script>
-  document.getElementById('contactForm').addEventListener('submit', function(event) {
-    event.preventDefault();
-
-    const name = document.getElementById('name').value;
-    const phone = document.getElementById('phone').value;
-
-    const message = `Имя: ${name}\nТелефон: ${phone}`;
-    const token = '7049544602:AAFFkIdvtly58ShkY6b1RYxMH8-xnJkhDAU';  // Replace with your bot token
-    const chat_id = '506457348';  // Replace with your chat ID
-
-    const url = `https://api.telegram.org/bot${token}/sendMessage`;
-
-    const data = {
-      chat_id: chat_id,
-      text: message
-    };
-
-    fetch(url, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(data)
-    })
-    .then(response => response.json())
-    .then(data => {
-      if (data.ok) {
-        alert('Ваше сообщение было отправлено!');
-      } else {
-        alert('Произошла ошибка при отправке сообщения.');
-      }
-      document.getElementById('contactForm').reset();
-      closeModal();
-    })
-    .catch(error => {
-      console.error('Ошибка:', error);
-      alert('Произошла ошибка при отправке сообщения.');
-    });
-  });
-
-  function closeModal() {
-    document.getElementById('contactModal').classList.add('hidden');
-  }
-
-  // Function to open the modal
-  function openModal() {
-    document.getElementById('contactModal').classList.remove('hidden');
-  }
-
-  // Add event listener to the "Оставить заявку" button
-  document.querySelector('.open-contact-modal').addEventListener('click', openModal);
-</script>
-
-
-</body>
-</html>
+         --> </div> <div class="my-10 text-sm text-center text-gray-600 dark:text-gray-400">
+Copyright © 2024. Сделано с ♥ компанией NeoDev.
+</div> </div> </div> <script>
+    AOS.init();
+  </script>   </body></html>
